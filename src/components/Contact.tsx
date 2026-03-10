@@ -28,11 +28,15 @@ export default function Contact() {
     message: '',
   })
 
-  const handleChange = (e) => {
+  // FIXED TYPES HERE
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  // FIXED TYPES HERE
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     setSubmitted(true)
