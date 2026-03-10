@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Calendar, MapPin, Briefcase, GraduationCap } from 'lucide-react'
 import SectionHeading from './SectionHeading'
+import profilepic from '../assets/profilepic.png'
 
 const stats = [
   { label: 'Projects Built', value: '6+' },
@@ -20,29 +21,35 @@ export default function About() {
   return (
     <section id="about" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <SectionHeading
           title="About Me"
           subtitle="Get to know me and my journey in data analytics"
         />
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
 
           {/* Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            viewport={{ once: true }}
+            className="flex justify-center"
           >
-            <div className="relative aspect-square max-w-sm mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-800 rounded-2xl rotate-3 opacity-20" />
+            <div className="relative w-72 h-72">
 
-              <div className="relative bg-surface-800 rounded-2xl overflow-hidden border border-surface-700/50">
-                <div className="aspect-square flex items-center justify-center bg-gradient-to-br from-surface-800 to-surface-900">
-                  <span className="text-8xl">📊</span>
-                </div>
-              </div>
+              {/* Glow background */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 blur-2xl opacity-25"></div>
+
+              {/* Image */}
+              <img
+                src={profilepic}
+                alt="Jayneel Patil"
+                className="relative w-72 h-72 rounded-full object-cover border-4 border-surface-700 shadow-xl"
+                style={{ objectPosition: "center 15%" }}
+              />
+
             </div>
           </motion.div>
 
@@ -50,14 +57,15 @@ export default function About() {
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
+
             <p className="text-surface-300 leading-relaxed mb-6">
-              I'm an aspiring Data Analyst based in Mumbai with a strong interest in
-              transforming raw data into meaningful insights. I enjoy analyzing
-              datasets, identifying patterns, and building dashboards that help
-              businesses make better data-driven decisions.
+              I'm an aspiring Data Analyst based in Mumbai with a strong passion for
+              transforming raw data into meaningful insights. I enjoy exploring
+              datasets, identifying patterns, and building analytical dashboards
+              that help organizations make better data-driven decisions.
             </p>
 
             <p className="text-surface-300 leading-relaxed mb-8">
@@ -67,6 +75,7 @@ export default function About() {
               cloud technologies.
             </p>
 
+            {/* Details */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               {details.map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-3 text-sm">
@@ -84,6 +93,7 @@ export default function About() {
             >
               Let's Connect
             </a>
+
           </motion.div>
         </div>
 
@@ -91,22 +101,25 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
         >
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="text-center p-6 bg-surface-900/50 border border-surface-800/50 rounded-2xl hover:border-primary-500/30 transition-colors duration-300"
+              className="text-center p-6 bg-surface-900/50 border border-surface-800/50 rounded-2xl hover:border-primary-500/30 transition-all duration-300"
             >
               <div className="text-3xl font-bold text-white mb-1">
                 {stat.value}
               </div>
-              <div className="text-sm text-surface-400">{stat.label}</div>
+              <div className="text-sm text-surface-400">
+                {stat.label}
+              </div>
             </div>
           ))}
         </motion.div>
+
       </div>
     </section>
   )
