@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, Github, Folder } from 'lucide-react'
+import { ExternalLink, Github } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 
 import smartcommute from '../assets/projects/SmartCommute.png'
@@ -15,7 +15,6 @@ const projects = [
       'AI-powered traffic analytics platform predicting Mumbai commute demand using ML and PostgreSQL pipelines with Power BI geospatial dashboards.',
     tech: ['Python', 'AWS', 'PostgreSQL', 'Power BI', 'Pandas'],
     github: 'https://github.com/jayneel1110/smartcommute_ai',
-    live: '#',
     image: smartcommute,
   },
   {
@@ -23,8 +22,8 @@ const projects = [
     description:
       'Real estate analytics system modeling 5-year ROI projections across Mumbai locations to identify undervalued investment opportunities.',
     tech: ['Python', 'PostgreSQL', 'AWS', 'Power BI', 'Pandas'],
-    github: 'https://github.com/jayneel1110/PropSIght-Mumbai-Real-Estate-Intelligence-System',
-    live: '#',
+    github:
+      'https://github.com/jayneel1110/PropSIght-Mumbai-Real-Estate-Intelligence-System',
     image: propsight,
   },
   {
@@ -33,7 +32,6 @@ const projects = [
       'HR analytics dashboard analyzing 1,470 employee records to uncover attrition drivers and provide actionable workforce insights.',
     tech: ['SQL', 'Excel', 'Power BI', 'Analytics'],
     github: 'https://github.com/jayneel1110/HR-Analytics-Dashboard',
-    live: '#',
     image: hr,
   },
   {
@@ -42,7 +40,6 @@ const projects = [
       'Sales analytics project analyzing 10,000+ global transactions to identify revenue trends and regional market performance.',
     tech: ['Python', 'Pandas', 'Data Visualization'],
     github: 'https://github.com/jayneel1110/PythonEDA',
-    live: '#',
     image: sales,
   },
   {
@@ -51,23 +48,13 @@ const projects = [
       'Interactive Power BI dashboard analyzing 450+ NBA player statistics with DAX metrics and performance insights.',
     tech: ['Power BI', 'PostgreSQL', 'Excel', 'DAX'],
     github: 'https://github.com/jayneel1110/NBA-2024-Player-Dashboard',
-    live: '#',
     image: nba,
   },
 ]
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  visible: { opacity: 1, y: 0 },
 }
 
 export default function Projects() {
@@ -80,68 +67,55 @@ export default function Projects() {
           subtitle="Data analytics and machine learning projects showcasing real-world problem solving"
         />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
-              className="group flex flex-col bg-surface-900/50 border border-surface-800/50 rounded-2xl overflow-hidden hover:border-primary-500/40 transition-all duration-300 hover:-translate-y-1"
+              initial="hidden"
+              whileInView="visible"
+              transition={{ delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="group bg-surface-900/60 border border-surface-800 rounded-2xl overflow-hidden hover:border-primary-500/40 transition"
             >
 
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden">
+              {/* Image Container */}
+              <div className="relative p-4">
 
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                <div className="rounded-xl overflow-hidden bg-black/40 border border-surface-800">
 
-                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                <div className="absolute top-4 left-4">
-                  <Folder size={18} className="text-white/80" />
-                </div>
-
-                <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black transition"
-                  >
-                    <Github size={16} />
-                  </a>
-
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black transition"
-                  >
-                    <ExternalLink size={16} />
-                  </a>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-44 object-cover group-hover:scale-105 transition duration-500"
+                  />
 
                 </div>
 
               </div>
 
-              {/* Card Body */}
-              <div className="flex flex-col flex-1 p-6">
+              {/* Content */}
+              <div className="px-6 pb-6">
 
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors">
-                  {project.title}
-                </h3>
+                <div className="flex items-start justify-between mb-2">
 
-                <p className="text-sm text-surface-400 leading-relaxed mb-4 flex-1">
+                  <h3 className="text-lg font-semibold text-white group-hover:text-primary-400 transition">
+                    {project.title}
+                  </h3>
+
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-surface-400 hover:text-white"
+                  >
+                    <Github size={18} />
+                  </a>
+
+                </div>
+
+                <p className="text-sm text-surface-400 leading-relaxed mb-4">
                   {project.description}
                 </p>
 
@@ -149,7 +123,7 @@ export default function Projects() {
                   {project.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 text-xs font-medium text-primary-400/80 bg-primary-500/10 rounded-md"
+                      className="text-xs px-2 py-1 bg-primary-500/10 text-primary-400 rounded-md"
                     >
                       {t}
                     </span>
@@ -161,7 +135,7 @@ export default function Projects() {
             </motion.div>
           ))}
 
-        </motion.div>
+        </div>
       </div>
     </section>
   )
