@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 import { ExternalLink, Github, Folder } from 'lucide-react'
 import SectionHeading from './SectionHeading'
 
-import smartcommute from '../assets/projects/smartcommute.png'
-import propsight from '../assets/projects/propsight.png'
+import smartcommute from '../assets/projects/SmartCommute.png'
+import propsight from '../assets/projects/PropSight.png'
 import hr from '../assets/projects/hr.png'
 import sales from '../assets/projects/sales.png'
 import nba from '../assets/projects/nba.png'
@@ -104,18 +104,19 @@ export default function Projects() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
 
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                 <div className="absolute top-4 left-4">
-                  <Folder size={18} className="text-white/70" />
+                  <Folder size={18} className="text-white/80" />
                 </div>
 
                 <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black"
+                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black transition"
                   >
                     <Github size={16} />
                   </a>
@@ -124,10 +125,11 @@ export default function Projects() {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black"
+                    className="p-2 bg-black/60 backdrop-blur rounded-lg text-white hover:bg-black transition"
                   >
                     <ExternalLink size={16} />
                   </a>
+
                 </div>
 
               </div>
